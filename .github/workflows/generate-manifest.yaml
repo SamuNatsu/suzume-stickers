@@ -1,0 +1,64 @@
+name: Generate Sticker Manifest
+
+on:
+  push:
+    paths:
+      - stickers/**
+  workflow_dispatch:
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Generate JSON Manifest
+        run: |
+          python -c "
+          import os
+          import json
+
+          root_dir = 'stickers'
+          manifest = {}
+
+          if os.path.exists(root_dir):
+              for item in os.listdir(root_dir):
+                  item_path = os.path.join(root_dir, item)
+
+                  if os.path.isdir(item_path):
+                      webp_files = []
+                      for filename in sorted(os.listdir(item_path)):
+                          if filename.endswith('.webp'):
+                              clean_name = filename.rsplit('.', 1)[0]
+                              webp_files.append(clean_name)
+
+                      if webp_files:
+                          manifest[item] = webp_files
+
+          with open('manifest.json', 'w') as f:
+              json.dump(manifest, f, separators=(',', ':'))
+          "
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet manifest.json; then
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and Push changes
+        if: steps.check_changes.outputs.changes_detected == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore: update `manifest.json`"
+          file_pattern: manifest.json
