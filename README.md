@@ -25,6 +25,25 @@ git submodule add https://github.com/SamuNatsu/suzume-stickers suzume
 />
 ```
 
+另外，仓库还包含了一个清单文件 `manifest.json` 用于获取表情包列表，格式如下：
+
+```json
+{
+  "这是 stickers 文件夹下子文件夹的名字": ["这是该子文件夹下的图片名字列表"]
+}
+```
+
+示例数据如下：
+
+```json
+{
+  "1": ["被炉", "吃瓜"],
+  "2": ["不许这样"]
+}
+```
+
+你可以通过这个清单文件来实现搜索，或拼凑出你想要的图片直链
+
 ## 鸣谢
 
 绿色小猫：<https://live.bilibili.com/5208231>  
