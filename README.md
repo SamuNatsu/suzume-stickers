@@ -44,6 +44,16 @@ git submodule add https://github.com/SamuNatsu/suzume-stickers suzume
 
 你可以通过这个清单文件来实现搜索，或拼凑出你想要的图片直链
 
+## 帮帮我们！
+
+Telegram 表情包缺失了一些，请帮帮我们！
+
+| 合集 | 名字 |
+| :--: | :--: |
+|  6   | 墨镜 |
+|  13  | 黑化 |
+|  16  | 捅你 |
+
 ## 鸣谢
 
 绿色小猫：<https://live.bilibili.com/5208231>  
