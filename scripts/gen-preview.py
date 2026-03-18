@@ -26,6 +26,7 @@ except IOError:
     font = ImageFont.load_default()
 
 collections = []
+collection_count = {}
 
 for collection_name in os.listdir(STICKERS_DIR):
     images = []
@@ -93,7 +94,9 @@ for collection_name in os.listdir(STICKERS_DIR):
 
     output_path = os.path.join(OUTPUT_DIR, f"{collection_name}.webp")
     preview_img.save(output_path)
+
     collections.append(collection_name)
+    collection_count[collection_name] = len(images)
 
 with open("PREVIEW.md", "w") as f:
     f.write("# 表情包预览\n\n")
@@ -101,6 +104,7 @@ with open("PREVIEW.md", "w") as f:
         f.writelines(
             [
                 f"## {collection}\n\n",
+                f"共 {collection_count[collection]} 枚\n\n",
                 f"![{collection}](./assets/preview/{collection}.webp)\n\n",
             ]
         )
