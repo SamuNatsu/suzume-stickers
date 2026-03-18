@@ -38,4 +38,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: update sticker preview images"
-          file_pattern: "assets/preview/*.png PREVIEW.md"
+          file_pattern: "assets/preview/*.webp PREVIEW.md"
