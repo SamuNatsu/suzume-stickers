@@ -36,5 +36,5 @@ jobs:
         if: steps.check_changes.outputs.changes_detected == 'true'
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: "chore: update `manifest.json`"
-          file_pattern: manifest.json
+          commit_message: "chore: update sticker manifest"
+          file_pattern: manifest.json README.md
