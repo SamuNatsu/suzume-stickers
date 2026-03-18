@@ -46,9 +46,6 @@ jobs:
           BG_COLOR = (255, 255, 255)
           TEXT_COLOR = (0, 0, 0)
 
-          FONT_PATH = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
-          FONT_SIZE = 12
-
           if not os.path.exists(OUTPUT_DIR):
               os.makedirs(OUTPUT_DIR)
 
@@ -97,7 +94,7 @@ jobs:
               draw = ImageDraw.Draw(preview_img)
 
               try:
-                  font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
+                  font = ImageFont.truetype("Noto Sans Mono CJK SC", 12)
               except IOError:
                   font = ImageFont.load_default()
 
