@@ -30,7 +30,7 @@ jobs:
 
       - name: Generate Preview Images
         run: |
-          python -c "
+          python - <<EOF
           import os
           import math
           from PIL import Image, ImageDraw, ImageFont
@@ -113,7 +113,7 @@ jobs:
 
               output_path = os.path.join(OUTPUT_DIR, f"{collection_name}.png")
               preview_img.save(output_path)
-          "
+          EOF
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v7
