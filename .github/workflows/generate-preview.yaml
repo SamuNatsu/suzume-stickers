@@ -94,7 +94,7 @@ jobs:
               draw = ImageDraw.Draw(preview_img)
 
               try:
-                  font = ImageFont.truetype("Noto Sans Mono CJK SC", 12)
+                  font = ImageFont.truetype("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc", 12, index=6)
               except IOError:
                   font = ImageFont.load_default()
 
