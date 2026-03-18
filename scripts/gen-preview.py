@@ -1,6 +1,8 @@
 import os
 import math
+
 from PIL import Image, ImageDraw, ImageFont
+from natsort import natsorted
 
 STICKERS_DIR = "stickers"
 OUTPUT_DIR = "assets/preview"
@@ -95,7 +97,7 @@ for collection_name in os.listdir(STICKERS_DIR):
 
 with open("PREVIEW.md", "w") as f:
     f.write("# 表情包预览\n\n")
-    for collection in sorted(collections):
+    for collection in natsorted(collections):
         f.writelines(
             [
                 f"## {collection}\n\n",
