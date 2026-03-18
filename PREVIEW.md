@@ -4,6 +4,38 @@
 
 ![1](./assets/preview/1.webp)
 
+## 2
+
+![2](./assets/preview/2.webp)
+
+## 3
+
+![3](./assets/preview/3.webp)
+
+## 4
+
+![4](./assets/preview/4.webp)
+
+## 5
+
+![5](./assets/preview/5.webp)
+
+## 6
+
+![6](./assets/preview/6.webp)
+
+## 7
+
+![7](./assets/preview/7.webp)
+
+## 8
+
+![8](./assets/preview/8.webp)
+
+## 9
+
+![9](./assets/preview/9.webp)
+
 ## 10
 
 ![10](./assets/preview/10.webp)
@@ -44,10 +76,6 @@
 
 ![19](./assets/preview/19.webp)
 
-## 2
-
-![2](./assets/preview/2.webp)
-
 ## 20
 
 ![20](./assets/preview/20.webp)
@@ -79,34 +107,6 @@
 ## 27
 
 ![27](./assets/preview/27.webp)
-
-## 3
-
-![3](./assets/preview/3.webp)
-
-## 4
-
-![4](./assets/preview/4.webp)
-
-## 5
-
-![5](./assets/preview/5.webp)
-
-## 6
-
-![6](./assets/preview/6.webp)
-
-## 7
-
-![7](./assets/preview/7.webp)
-
-## 8
-
-![8](./assets/preview/8.webp)
-
-## 9
-
-![9](./assets/preview/9.webp)
 
 ## bili
 
