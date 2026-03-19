@@ -46,7 +46,7 @@ for subdir in os.listdir("stickers"):
     # Read images
     manifest[subdir] = sorted(names)
     for name in manifest[subdir]:
-        file_path = os.path.join(subdir, f"{name}.webp")
+        file_path = os.path.join(subdir_path, f"{name}.webp")
         with Image.open(file_path) as img:
             container = Image.new(
                 "RGBA",
