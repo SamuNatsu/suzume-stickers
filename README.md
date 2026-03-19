@@ -9,7 +9,7 @@
 
 ## 合集预览
 
-目前共收集了<span id="count">466</span>个表情包
+目前共收集了<span id="count">481</span>个表情包
 
 [请看这里](./PREVIEW.md)
 
