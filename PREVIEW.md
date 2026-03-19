@@ -168,9 +168,15 @@
 
 ![bili](./assets/preview/bili.webp)
 
+## emotelab
+
+共 13 枚
+
+![emotelab](./assets/preview/emotelab.webp)
+
 ## misc
 
-共 8 枚
+共 10 枚
 
 ![misc](./assets/preview/misc.webp)
 
