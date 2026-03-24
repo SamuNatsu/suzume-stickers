@@ -11,7 +11,9 @@
 
 目前共收集了<span id="count">481</span>个表情包
 
-[请看这里](./PREVIEW.md)
+[文件预览请看这里](./PREVIEW.md)
+
+在线预览请看这里：<https://samunatsu.github.io/suzume-stickers/>
 
 ## 使用方法
 
