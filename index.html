@@ -99,15 +99,32 @@
         { keys: ["subset", "name"] },
       );
 
-      document.querySelector("input").addEventListener("input", (ev) => {
-        const result = fuse.search(ev.target.value);
+      const debounce = (fn, ms) => {
+        let timeout = null;
+        return (...args) => {
+          if (timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+          }
+          timeout = setTimeout(() => {
+            timeout = null;
+            fn(...args);
+          }, ms);
+        };
+      };
+      const debouncedSearch = debounce((keyword) => {
+        const result = fuse.search(keyword);
         const els = result
           .map(({ item }) => `<p>${getSubname(item.subset)} → ${item.name}</p>`)
           .join("");
 
         document.querySelector("form>details").innerHTML =
           `<summary>搜索结果：${result.length}</summary>${els}`;
-      });
+      }, 250);
+
+      document
+        .querySelector("input")
+        .addEventListener("input", (ev) => debouncedSearch(ev.target.value));
     </script>
   </body>
 </html>
