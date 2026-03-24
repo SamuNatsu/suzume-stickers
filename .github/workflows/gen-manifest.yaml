@@ -1,0 +1,30 @@
+name: Generate Manifests
+
+on:
+  push:
+    paths:
+      - stickers/**
+  workflow_dispatch:
+
+jobs:
+  build-manifest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.x
+
+      - name: Generate
+        run: python scripts/gen-manifest.py
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore: update manifests"
+          file_pattern: manifest.json README.md
