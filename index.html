@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Suzume 表情包预览</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdmirror.com/npm/normalize.css@8.0.1/normalize.min.css"
+    />
+    <style>
+      body {
+        padding: 0 1rem;
+      }
+      details {
+        padding: 0.25rem 0;
+
+        &[open] {
+          background-color: #eee;
+        }
+      }
+      figure {
+        margin: 1rem;
+        text-align: center;
+      }
+      form {
+        margin: 1rem 0;
+      }
+      img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      @media screen and (max-width: 768px) {
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .gallery {
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Suzume 表情包预览</h1>
+    <hr />
+    <form>
+      <label>搜索：<input name="keyword" /></label>
+      <details>
+        <summary>搜索结果：0</summary>
+      </details>
+    </form>
+    <hr />
+    <script type="module">
+      import Fuse from "https://cdn.jsdmirror.com/npm/fuse.js@7.1.0/dist/fuse.min.mjs";
+
+      document
+        .querySelector("form")
+        .addEventListener("submit", (ev) => ev.preventDefault());
+
+      const manifest = await fetch(
+        "https://cdn.jsdmirror.com/gh/SamuNatsu/suzume-stickers@main/manifest.json",
+      ).then((resp) => resp.json());
+
+      const list = Object.entries(manifest).map(([subset, names]) => [
+        subset,
+        names.map((name) => ({
+          name,
+          url: `https://cdn.jsdmirror.com/gh/SamuNatsu/suzume-stickers@main/stickers/${encodeURIComponent(subset)}/${encodeURIComponent(name)}.webp`,
+        })),
+      ]);
+
+      const getSubname = (subset) =>
+        /^\d+$/.test(subset) ? `撕梓咩${subset}` : subset;
+
+      for (const [subset, images] of list) {
+        const subname = getSubname(subset);
+        let container = `<details><summary>${subname}</summary><div class="gallery">`;
+
+        for (const { name, url } of images) {
+          container += `<figure><img alt="${name}" loading="lazy" src="${url}" title="${name}" /><figcaption>${name}</figcaption></figure>`;
+        }
+        container += "</div></details>";
+
+        document.body.insertAdjacentHTML("beforeend", container);
+      }
+
+      const fuse = new Fuse(
+        list.flatMap(([subset, images]) =>
+          images.map(({ name }) => ({ name, subset })),
+        ),
+        { keys: ["subset", "name"] },
+      );
+
+      document.querySelector("input").addEventListener("input", (ev) => {
+        const result = fuse.search(ev.target.value);
+        const els = result
+          .map(({ item }) => `<p>${getSubname(item.subset)} → ${item.name}</p>`)
+          .join("");
+
+        document.querySelector("form>details").innerHTML =
+          `<summary>搜索结果：${result.length}</summary>${els}`;
+      });
+    </script>
+  </body>
+</html>
